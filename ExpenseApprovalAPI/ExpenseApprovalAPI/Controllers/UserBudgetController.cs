@@ -33,7 +33,7 @@ namespace ExpenseApproval.API.Controllers
         {
 
                 double amount = _userBudgetService.GetAvailableBudgetForUser(userId,budgetYear);
-                return Ok(new { Budget = amount });
+                return Ok(amount);
         }
     }
 }
