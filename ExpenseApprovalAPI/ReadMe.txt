@@ -9,10 +9,8 @@ Functionality Covered
 5) Admin can approve/reject expense
 6) Admin can view all expenses.
 
-Swagger Integration 
+-Swagger Integration 
+-JWT implementation
+-Unit tests
+-Logging
 
-TO DO
-JWT implementation
-Unit tests
-logging
-validations
