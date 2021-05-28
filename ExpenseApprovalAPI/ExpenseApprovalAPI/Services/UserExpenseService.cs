@@ -13,10 +13,12 @@ namespace ExpenseApproval.API.Services
     public class UserExpenseService : IUserExpenseService
     {
         private readonly ExpenseDataContext _context;
+        private readonly ILoggerService _logger;
 
-        public UserExpenseService(ExpenseDataContext context)
+        public UserExpenseService(ExpenseDataContext context, ILoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public bool AddExpense(UserExpense expense)
@@ -33,10 +35,10 @@ namespace ExpenseApproval.API.Services
             }
             catch(Exception ex)
             {
-                return false;
+                Task.Run(() => _logger.Log(LogType.Error, "AddExpense", "", "", ex, "Add Expense failed"));
             }
-           
 
+            return false;
 
         }
 
@@ -48,8 +50,10 @@ namespace ExpenseApproval.API.Services
             }
             catch(Exception ex)
             {
-                return null;
+                Task.Run(() => _logger.Log(LogType.Error, "GetAllExpenses", "", "", ex, "GetAllExpenses failed"));
             }
+
+            return null;
         }
 
         public IEnumerable<UserExpense> GetAllExpensesByUserId(Guid id)
@@ -61,8 +65,9 @@ namespace ExpenseApproval.API.Services
             }
             catch (Exception ex)
             {
-                return null;
+                Task.Run(() => _logger.Log(LogType.Error, "GetAllExpensesByUserId", "", "", ex, "GetAllExpensesByUserId failed"));
             }
+            return null;
         }
 
         public bool UpdateExpense(UserExpense expense)
@@ -80,8 +85,9 @@ namespace ExpenseApproval.API.Services
             }
             catch(Exception ex)
             {
-                return false;
+                Task.Run(() => _logger.Log(LogType.Error, "UpdateExpense", "", "", ex, "UpdateExpense failed"));
             }
+            return false;
         }
 
         

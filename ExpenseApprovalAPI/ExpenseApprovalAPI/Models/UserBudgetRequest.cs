@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ExpenseApproval.API.Models
 {
-    public class UpdateExpenseDto
+    public class UserBudgetRequest
     {
         public Guid UserID { get; set; }
-        public Guid ExpenseID { get; set; }
-        public string ExpenseStatus { get; set; }
+        public int BudgetYear { get; set; }
+
     }
 }

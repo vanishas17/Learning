@@ -4,52 +4,22 @@ using ExpenseApproval.API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExpenseApproval.API.Migrations
 {
     [DbContext(typeof(ExpenseDataContext))]
-    partial class ExpenseApprovalContextModelSnapshot : ModelSnapshot
+    [Migration("20210528155910_Changed role datatype")]
+    partial class Changedroledatatype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ExpenseApproval.API.Entities.Logger", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LogMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LogType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MethodName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Request")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Response")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StackTrace")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logger");
-                });
 
             modelBuilder.Entity("ExpenseApproval.API.Entities.User", b =>
                 {
@@ -73,7 +43,8 @@ namespace ExpenseApproval.API.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("Role")
                         .IsRequired()

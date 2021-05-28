@@ -13,9 +13,10 @@ namespace ExpenseApproval.API.Profiles
     {
         public AutoMapping()
         {
-            CreateMap<UserExpense, ExpenseDto>();
-            CreateMap<UserExpense, UpdateExpenseDto>();
-            CreateMap<UserBudget, UserBudgetDto>();
+            CreateMap<UserExpense, ExpenseRequest>();
+            CreateMap<ExpenseRequest, UserExpense>();
+            CreateMap<UserExpense, UpdateExpenseRequest>();
+            CreateMap<UserBudget, UserBudgetRequest>();
         }
     }
 }

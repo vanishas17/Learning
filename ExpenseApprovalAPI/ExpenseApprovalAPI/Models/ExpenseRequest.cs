@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseApproval.API.Models
 {
-    public class ExpenseDto
+    public class ExpenseRequest
     {       
 
         [Required]
@@ -21,7 +21,5 @@ namespace ExpenseApproval.API.Models
         [Required]
         public string ExpenseType { get; set; }
 
-        [Required]
-        public string Status { get; set; }
     }
 }

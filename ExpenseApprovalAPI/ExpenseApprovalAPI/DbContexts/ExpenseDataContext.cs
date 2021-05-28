@@ -13,6 +13,7 @@ namespace ExpenseApproval.API.DbContexts
         public DbSet<User> Users { get; set; }
         public DbSet<UserExpense> UserExpenses { get; set; }
         public DbSet<UserBudget> UserBudget { get; set; }
+        public DbSet<Logger> Logger { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

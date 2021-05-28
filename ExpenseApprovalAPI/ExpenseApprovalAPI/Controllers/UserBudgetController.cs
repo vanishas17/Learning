@@ -2,6 +2,7 @@
 using ExpenseApproval.API.Contracts;
 using ExpenseApproval.API.Entities;
 using ExpenseApproval.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,19 +28,12 @@ namespace ExpenseApproval.API.Controllers
 
         [HttpGet]
         [Route("getbudget")]
-        public IActionResult GetBudgetByUserId([FromBody] UserBudgetDto userBudget)
+        [Authorize]
+        public IActionResult GetBudgetByUserId(Guid userId,int budgetYear)
         {
-            var budget = _mapper.Map<UserBudget>(userBudget);
-            try
-            {
-                double amount = _userBudgetService.GetAvailableBudgetForUser(budget.UserID, budget.BudgetYear);
 
+                double amount = _userBudgetService.GetAvailableBudgetForUser(userId,budgetYear);
                 return Ok(new { Budget = amount });
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(new { message = "Error while fetching budget for user" });
-            }
         }
     }
 }

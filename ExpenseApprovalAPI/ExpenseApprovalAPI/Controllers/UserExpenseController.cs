@@ -3,6 +3,7 @@ using ExpenseApproval.API.Contracts;
 using ExpenseApproval.API.Entities;
 using ExpenseApproval.API.Handlers;
 using ExpenseApproval.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,6 +38,7 @@ namespace ExpenseApproval.API.Controllers
 
         [HttpGet]
         [Route("allexpenses")]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetAllExpenses()
         {
             IEnumerable<UserExpense> allExpenses = _userExpenseService.GetAllExpenses();
@@ -46,17 +48,19 @@ namespace ExpenseApproval.API.Controllers
 
         [HttpGet]
         [Route("expenses/{id}")]
+        [Authorize]
         public IActionResult GetAllExpensesByUserId(Guid id)
         {
             IEnumerable<UserExpense> userExpenses = _userExpenseService.GetAllExpensesByUserId(id);
-
-            return Ok(new { expenses = userExpenses });
+            
+            return Ok(userExpenses);
         }
 
 
         [HttpPost]
         [Route("addexpense")]
-        public IActionResult AddExpense([FromBody] ExpenseDto expense)
+        [Authorize]
+        public IActionResult AddExpense([FromBody] ExpenseRequest expense)
         {
             var _expense = _mapper.Map<UserExpense>(expense);
             try
@@ -75,7 +79,8 @@ namespace ExpenseApproval.API.Controllers
 
         [HttpPost]
         [Route("updateexpense")]
-        public IActionResult UpdateExpense([FromBody] UpdateExpenseDto expense)
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateExpense([FromBody] UpdateExpenseRequest expense)
         {
             var _expense = _mapper.Map<UserExpense>(expense);
             

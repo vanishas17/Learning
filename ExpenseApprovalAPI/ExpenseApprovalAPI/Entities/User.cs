@@ -16,8 +16,7 @@ namespace ExpenseApproval.API.Entities
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(16)]
-        [MinLength(8)]
+       
         public string Password { get; set; }
 
         [Required]
@@ -29,6 +28,6 @@ namespace ExpenseApproval.API.Entities
         public string LastName { get; set; }
 
         [Required]
-        public int Role { get; set; }
+        public string Role { get; set; }
     }
 }

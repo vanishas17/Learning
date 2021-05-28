@@ -4,16 +4,21 @@ using ExpenseApproval.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ExpenseApproval.API.Services
 {
     public class UserService : IUserService
     {
-        private ExpenseDataContext _context;
-        public UserService(ExpenseDataContext context)
+        private readonly ExpenseDataContext _context;
+        private readonly ILoggerService _logger;
+
+        public UserService(ExpenseDataContext context, ILoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
         public User Authenticate(string email, string password)
         {
@@ -28,21 +33,30 @@ namespace ExpenseApproval.API.Services
 
                 if (user == null) return null;
 
-                if (!VerifyPassword(password)) return null;
+                if (!VerifyPassword(password,user.Password)) return null;
 
                 return user;
             }
             catch(Exception ex)
             {
-                return null;
+                Task.Run(() => _logger.Log(LogType.Error, "Authenticate", "", "", ex, "Authenticate failed"));
             }
-            
+            return null;
         }
 
-        private bool VerifyPassword(string password)
+        private bool VerifyPassword(string password,string hashPassword)
         {
-            return true;
-            //throw new NotImplementedException();
+            StringBuilder hash = new StringBuilder();
+            var md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(password));
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+
+            if (string.Compare( hash.ToString(), hashPassword,true) == 0 )
+                return true;
+            return false;
         }
     }
 }
