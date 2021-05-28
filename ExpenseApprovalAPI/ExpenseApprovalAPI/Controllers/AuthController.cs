@@ -24,8 +24,9 @@ namespace ExpenseApproval.API.Controllers
         [Route("login")]
         public IActionResult Authenticate([FromBody] AuthRequest request)
         {
-            try
-            {
+                if (!ModelState.IsValid)
+                    return BadRequest();
+
                 var user = _userService.Authenticate(request.Username, request.Password);
                 if (user == null)
                     return BadRequest(new { message = "Username or password is incorrect" });
@@ -34,11 +35,6 @@ namespace ExpenseApproval.API.Controllers
                 
                 return Ok(new { Id = user.UserID, Token = token });
 
-            } 
-            catch(Exception ex)
-            {
-                return BadRequest(new { message = "Authentication Failed" });
-            }
         }
     }
 }

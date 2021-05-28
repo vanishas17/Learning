@@ -14,10 +14,10 @@ namespace ExpenseApproval.API.Services
         {
             _context = context;
         }
-        public double GetAvailableBudgetForUser(UserBudget userBudget)
+        public double GetAvailableBudgetForUser(Guid userId, int budgetYear)
         {
 
-           double amount = Convert.ToDouble(_context.UserBudget.Where(s => s.UserID == userBudget.UserID && s.BudgetYear == userBudget.BudgetYear).Select(s=>s.Amount));
+           double amount = Convert.ToDouble(_context.UserBudget.Where(s => s.UserID == userId && s.BudgetYear == budgetYear).Select(s=>s.Amount));
 
             return amount;
             

@@ -32,7 +32,7 @@ namespace ExpenseApproval.API.Controllers
             var budget = _mapper.Map<UserBudget>(userBudget);
             try
             {
-                double amount = _userBudgetService.GetBudgetForUser(budget);
+                double amount = _userBudgetService.GetAvailableBudgetForUser(budget.UserID, budget.BudgetYear);
 
                 return Ok(new { Budget = amount });
             }

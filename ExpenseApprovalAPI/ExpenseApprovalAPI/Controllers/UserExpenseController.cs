@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExpenseApproval.API.Contracts;
 using ExpenseApproval.API.Entities;
+using ExpenseApproval.API.Handlers;
 using ExpenseApproval.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,22 +18,25 @@ namespace ExpenseApproval.API.Controllers
     {
         private readonly IUserExpenseService _userExpenseService;
         private readonly IUserBudgetService _userBudgetService;
+        private readonly IExpenseHandler _expenseHandler;
         private readonly IMapper _mapper;
 
 
         public UserExpenseController(
             IUserExpenseService userExpenseService,
             IUserBudgetService userBudgetService,
+            IExpenseHandler expenseHandler,
             IMapper mapper
             )
         {
             _userExpenseService = userExpenseService;
             _userBudgetService = userBudgetService;
+            _expenseHandler = expenseHandler;
             _mapper = mapper;
         }
 
         [HttpGet]
-        [Route("expenses")]
+        [Route("allexpenses")]
         public IActionResult GetAllExpenses()
         {
             IEnumerable<UserExpense> allExpenses = _userExpenseService.GetAllExpenses();
@@ -77,9 +81,7 @@ namespace ExpenseApproval.API.Controllers
             
             try
             {
-                //double availableAmount = _userBudgetService.GetBudgetForUser();
-
-                var result = _userExpenseService.UpdateExpense(_expense);
+                var result = _expenseHandler.UpdateExpense(_expense);
                 if (result)
                     return Ok(new { message = "Expense Updated Successfully" });
 
