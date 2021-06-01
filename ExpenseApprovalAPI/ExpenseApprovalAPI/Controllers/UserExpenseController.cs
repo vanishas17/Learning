@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using ExpenseApproval.API.Contracts;
-using ExpenseApproval.API.Entities;
 using ExpenseApproval.API.Handlers;
-using ExpenseApproval.API.Models;
+using ExpenseApproval.Common.Models;
+using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.Service.Budget;
+using ExpenseApproval.Service.Expense;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,11 +70,11 @@ namespace ExpenseApproval.API.Controllers
                 if (result)
                     return Ok(new { message = "Expense Submitted Successfully" });
 
-                return BadRequest(new { message = "Expense Submission Failed" });
+                throw new BaseException("Expense Submission Failed");
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Expense Submission Failed" });
+                throw new BaseException("Expense Submission Failed");
             }
         }
 
@@ -90,11 +91,11 @@ namespace ExpenseApproval.API.Controllers
                 if (result)
                     return Ok(new { message = "Expense Updated Successfully" });
 
-                return BadRequest(new { message = "Expense Update Failed" });
+                throw new BaseException("Expense Update Failed");
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Expense Update Failed" });
+                throw new BaseException("Expense Update Failed");
             }
         }
     }

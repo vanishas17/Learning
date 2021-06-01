@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using ExpenseApproval.API.Contracts;
 using ExpenseApproval.API.Controllers;
 using ExpenseApproval.API.Handlers;
+using ExpenseApproval.Service.Budget;
+using ExpenseApproval.Service.Expense;
 using ExpenseApproval.Tests.MockServices;
 using Microsoft.AspNetCore.Mvc;
 using System;

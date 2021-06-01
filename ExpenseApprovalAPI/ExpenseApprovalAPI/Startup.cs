@@ -1,7 +1,9 @@
-using ExpenseApproval.API.Contracts;
-using ExpenseApproval.API.DbContexts;
 using ExpenseApproval.API.Handlers;
-using ExpenseApproval.API.Services;
+using ExpenseApproval.DataAccess.DbContexts;
+using ExpenseApproval.Service.Budget;
+using ExpenseApproval.Service.Expense;
+using ExpenseApproval.Service.Logging;
+using ExpenseApproval.Service.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -114,6 +116,8 @@ namespace ExpenseApproval.API
             app.UseAuthorization();
 
             app.UseStatusCodePages();
+
+            app.UseMiddleware<ErrorHandler>();
 
             app.UseEndpoints(endpoints =>
             {

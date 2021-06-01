@@ -1,5 +1,6 @@
-﻿using ExpenseApproval.API.Contracts;
-using ExpenseApproval.API.Entities;
+﻿using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.Service.Budget;
+using ExpenseApproval.Service.Expense;
 using System;
 using System.Collections.Generic;
 using System.Linq;

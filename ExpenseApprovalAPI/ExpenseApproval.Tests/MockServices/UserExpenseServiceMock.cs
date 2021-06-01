@@ -1,9 +1,9 @@
-﻿using ExpenseApproval.API.Contracts;
-using ExpenseApproval.API.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.Service.Expense;
 
 namespace ExpenseApproval.Tests.MockServices
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ExpenseApproval.API.Entities;
-using ExpenseApproval.API.Models;
+using ExpenseApproval.Common.Models;
+using ExpenseApproval.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
