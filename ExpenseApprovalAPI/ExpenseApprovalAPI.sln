@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.API", "ExpenseApprovalAPI\ExpenseApproval.API.csproj", "{17A8269C-E892-49F1-98B7-24EAB17FA3AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.API", "Host\ExpenseApproval.API.csproj", "{17A8269C-E892-49F1-98B7-24EAB17FA3AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Tests", "ExpenseApproval.Tests\ExpenseApproval.Tests.csproj", "{1F0D8300-6348-4E8C-A748-18C77251508F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Tests", "Test\ExpenseApproval.Tests.csproj", "{1F0D8300-6348-4E8C-A748-18C77251508F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8CCA2611-35AA-48F5-893C-6C753C3A653F}"
 EndProject

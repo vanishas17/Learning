@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExpenseApprovalAPI\ExpenseApproval.API.csproj" />
+    <ProjectReference Include="..\Host\ExpenseApproval.API.csproj" />
   </ItemGroup>
 
 </Project>
