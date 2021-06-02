@@ -1,6 +1,7 @@
 ﻿using ExpenseApproval.Common.Utils;
 using ExpenseApproval.DataAccess.DbContexts;
 using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ namespace ExpenseApproval.Service.Expense
 {
     public class UserExpenseService : IUserExpenseService
     {
-        private readonly ExpenseDataContext _context;
         private readonly ILoggerService _logger;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
-        public UserExpenseService(ExpenseDataContext context, ILoggerService logger)
+        public UserExpenseService(IRepositoryWrapper repositoryWrapper, ILoggerService logger)
         {
-            _context = context;
+            _repositoryWrapper = repositoryWrapper;
             _logger = logger;
         }
 
@@ -27,8 +28,8 @@ namespace ExpenseApproval.Service.Expense
 
             try
             {
-                _context.UserExpenses.Add(expense);
-                _context.SaveChanges();
+                _repositoryWrapper.Expense.Add(expense);
+                _repositoryWrapper.Save();
 
                 return true;
             }
@@ -45,7 +46,7 @@ namespace ExpenseApproval.Service.Expense
         {
             try
             {
-                return _context.UserExpenses;
+                return _repositoryWrapper.Expense.GetAll();
             }
             catch(Exception ex)
             {
@@ -59,7 +60,7 @@ namespace ExpenseApproval.Service.Expense
         {
             try
             {
-                var userExpenses = _context.UserExpenses.Where(s => s.UserID == id);
+                var userExpenses = _repositoryWrapper.Expense.GetByCondition(s => s.UserID == id);
                 return userExpenses;
             }
             catch (Exception ex)
@@ -73,11 +74,11 @@ namespace ExpenseApproval.Service.Expense
         {
             try
             {
-                UserExpense userExpense = _context.UserExpenses.Find(expense.ExpenseID);
+                UserExpense userExpense = _repositoryWrapper.Expense.GetByCondition(c => c.ExpenseID == expense.ExpenseID).FirstOrDefault();
                 if(userExpense != null)
-                {   
-                    _context.UserExpenses.Update(userExpense);
-                    _context.SaveChanges();
+                {
+                    _repositoryWrapper.Expense.Update(userExpense);
+                    _repositoryWrapper.Save();
                 }
 
                 return true;

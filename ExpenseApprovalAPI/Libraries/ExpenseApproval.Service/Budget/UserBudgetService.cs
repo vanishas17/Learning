@@ -1,6 +1,7 @@
 ﻿using ExpenseApproval.DataAccess;
 using ExpenseApproval.DataAccess.DbContexts;
 using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Logging;
 using System;
 using System.Linq;
@@ -10,13 +11,13 @@ namespace ExpenseApproval.Service.Budget
 {
     public class UserBudgetService : IUserBudgetService
     {
-        private readonly ExpenseDataContext _context;
+        private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly ILoggerService _logger;
 
 
-        public UserBudgetService(ExpenseDataContext context, ILoggerService logger)
+        public UserBudgetService(IRepositoryWrapper repositoryWrapper, ILoggerService logger)
         {
-            _context = context;
+            _repositoryWrapper = repositoryWrapper;
             _logger = logger;
         }
         public double GetAvailableBudgetForUser(Guid userId, int budgetYear)
@@ -25,7 +26,7 @@ namespace ExpenseApproval.Service.Budget
             double amount = 0.0;
             try
             {
-                amount = Convert.ToDouble(_context.UserBudget.Where(s => s.UserID == userId && s.BudgetYear == budgetYear).Select(s => s.Amount));
+                amount = Convert.ToDouble(_repositoryWrapper.Budget.GetByCondition(s => s.UserID == userId && s.BudgetYear == budgetYear).Select(s => s.Amount));
             }
             catch (Exception ex)
             {
@@ -35,20 +36,20 @@ namespace ExpenseApproval.Service.Budget
 
         }
 
-        public int SetBudgetForUser(UserBudget userBudget)
+        public bool SetBudgetForUser(UserBudget userBudget)
         {
             try
             {
-                _context.Update(userBudget);
-                var count = _context.SaveChanges();
+                _repositoryWrapper.Budget.Update(userBudget);
+                _repositoryWrapper.Save();
 
-                return count;
+                return true;
             }
             catch (Exception ex)
             {
                 Task.Run(() => _logger.Log(LogType.Error, "SetBudgetForUser", "", "", ex, "SetBudgetForUser failed"));
             }
-            return 0;
+            return false;
         }
     }
 }

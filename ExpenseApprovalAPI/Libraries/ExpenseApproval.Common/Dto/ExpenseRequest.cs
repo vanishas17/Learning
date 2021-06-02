@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExpenseApproval.Common.Models
+namespace ExpenseApproval.Common.Dto
 {
     public class ExpenseRequest
     {       

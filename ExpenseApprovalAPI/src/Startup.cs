@@ -1,5 +1,6 @@
 using ExpenseApproval.API.Handlers;
 using ExpenseApproval.DataAccess.DbContexts;
+using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Budget;
 using ExpenseApproval.Service.Expense;
 using ExpenseApproval.Service.Logging;
@@ -44,7 +45,7 @@ namespace ExpenseApproval.API
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"));
             });
 
-
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
             services.AddAutoMapper(typeof(Startup));
 

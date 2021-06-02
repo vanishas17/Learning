@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Host\ExpenseApproval.API.csproj" />
+    <ProjectReference Include="..\src\ExpenseApproval.API.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.API", "Host\ExpenseApproval.API.csproj", "{17A8269C-E892-49F1-98B7-24EAB17FA3AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.API", "src\ExpenseApproval.API.csproj", "{17A8269C-E892-49F1-98B7-24EAB17FA3AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Tests", "Test\ExpenseApproval.Tests.csproj", "{1F0D8300-6348-4E8C-A748-18C77251508F}"
 EndProject
@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8CCA2611-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{0763E056-9358-4571-972D-F1D473B9D621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApproval.DataAccess", "Libraries\ExpenseApproval.DataAccess\ExpenseApproval.DataAccess.csproj", "{556DE2B3-1D08-4059-8C13-0D12B166E8B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.DataAccess", "Libraries\ExpenseApproval.DataAccess\ExpenseApproval.DataAccess.csproj", "{556DE2B3-1D08-4059-8C13-0D12B166E8B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApproval.Service", "Libraries\ExpenseApproval.Service\ExpenseApproval.Service.csproj", "{FB815CF0-3E67-4206-AC48-FA766BEF706E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Service", "Libraries\ExpenseApproval.Service\ExpenseApproval.Service.csproj", "{FB815CF0-3E67-4206-AC48-FA766BEF706E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseApproval.Common", "Libraries\ExpenseApproval.Common\ExpenseApproval.Common.csproj", "{1B0E6612-7004-49D7-9209-B373074E47F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Utils", "Libraries\ExpenseApproval.Common\ExpenseApproval.Utils.csproj", "{1B0E6612-7004-49D7-9209-B373074E47F9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{4F3FCA3A-CB34-4B57-8461-F56635EADE98}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4F3FCA3A-CB34-4B57-8461-F56635EADE98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{17A8269C-E892-49F1-98B7-24EAB17FA3AF} = {4F3FCA3A-CB34-4B57-8461-F56635EADE98}
 		{1F0D8300-6348-4E8C-A748-18C77251508F} = {8CCA2611-35AA-48F5-893C-6C753C3A653F}
+		{8CCA2611-35AA-48F5-893C-6C753C3A653F} = {4F3FCA3A-CB34-4B57-8461-F56635EADE98}
+		{0763E056-9358-4571-972D-F1D473B9D621} = {4F3FCA3A-CB34-4B57-8461-F56635EADE98}
 		{556DE2B3-1D08-4059-8C13-0D12B166E8B8} = {0763E056-9358-4571-972D-F1D473B9D621}
 		{FB815CF0-3E67-4206-AC48-FA766BEF706E} = {0763E056-9358-4571-972D-F1D473B9D621}
 		{1B0E6612-7004-49D7-9209-B373074E47F9} = {0763E056-9358-4571-972D-F1D473B9D621}

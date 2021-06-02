@@ -1,5 +1,5 @@
 ﻿using ExpenseApproval.API.Helper.Auth;
-using ExpenseApproval.Common.Models;
+using ExpenseApproval.Common.Dto;
 using ExpenseApproval.Service.UserService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

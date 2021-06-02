@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ExpenseApproval.API.Handlers;
-using ExpenseApproval.Common.Models;
+using ExpenseApproval.Common.Dto;
 using ExpenseApproval.DataAccess.Entities;
 using ExpenseApproval.Service.Budget;
 using ExpenseApproval.Service.Expense;

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\ExpenseApproval.Common\ExpenseApproval.Common.csproj" />
+    <ProjectReference Include="..\Libraries\ExpenseApproval.Common\ExpenseApproval.Utils.csproj" />
     <ProjectReference Include="..\Libraries\ExpenseApproval.Service\ExpenseApproval.Service.csproj" />
   </ItemGroup>
 

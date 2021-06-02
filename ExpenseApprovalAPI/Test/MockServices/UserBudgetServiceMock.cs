@@ -29,7 +29,7 @@ namespace ExpenseApproval.Tests.MockServices
             return amount;
         }
 
-        public int SetBudgetForUser(UserBudget userBudget)
+        public bool SetBudgetForUser(UserBudget userBudget)
         {
             throw new NotImplementedException();
         }

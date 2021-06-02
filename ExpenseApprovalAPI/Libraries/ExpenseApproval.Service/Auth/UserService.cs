@@ -1,5 +1,6 @@
 ﻿using ExpenseApproval.DataAccess.DbContexts;
 using ExpenseApproval.DataAccess.Entities;
+using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Logging;
 using System;
 using System.Linq;
@@ -11,12 +12,12 @@ namespace ExpenseApproval.Service.UserService
 {
     public class UserService : IUserService
     {
-        private readonly ExpenseDataContext _context;
+        private readonly IRepositoryWrapper _repositoryWrapper;
         private readonly ILoggerService _logger;
 
-        public UserService(ExpenseDataContext context, ILoggerService logger)
+        public UserService(IRepositoryWrapper repositoryWrapper, ILoggerService logger)
         {
-            _context = context;
+            _repositoryWrapper = repositoryWrapper;
             _logger = logger;
         }
         public User Authenticate(string email, string password)
@@ -28,7 +29,7 @@ namespace ExpenseApproval.Service.UserService
                     return null;
                 }
 
-                var user = _context.Users.SingleOrDefault(x => x.Email == email);
+                var user = _repositoryWrapper.User.GetByCondition(x => x.Email == email).FirstOrDefault();
 
                 if (user == null) return null;
 
