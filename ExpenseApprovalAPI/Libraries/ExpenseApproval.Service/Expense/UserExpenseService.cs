@@ -1,8 +1,7 @@
-﻿using ExpenseApproval.Common.Utils;
-using ExpenseApproval.DataAccess.DbContexts;
-using ExpenseApproval.DataAccess.Entities;
+﻿using ExpenseApproval.DataAccess.Entities;
 using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Logging;
+using ExpenseApproval.Utils.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +20,7 @@ namespace ExpenseApproval.Service.Expense
             _logger = logger;
         }
 
-        public bool AddExpense(UserExpense expense)
+        public void AddExpense(UserExpense expense)
         {
             
             expense.Status = ExpenseStatus.Submitted.ToString();
@@ -31,14 +30,14 @@ namespace ExpenseApproval.Service.Expense
                 _repositoryWrapper.Expense.Add(expense);
                 _repositoryWrapper.Save();
 
-                return true;
+               
             }
             catch(Exception ex)
             {
                 Task.Run(() => _logger.Log(LogType.Error, "AddExpense", "", "", ex, "Add Expense failed"));
             }
 
-            return false;
+           
 
         }
 
@@ -70,7 +69,7 @@ namespace ExpenseApproval.Service.Expense
             return null;
         }
 
-        public bool UpdateExpense(UserExpense expense)
+        public void UpdateExpense(UserExpense expense)
         {
             try
             {
@@ -81,13 +80,13 @@ namespace ExpenseApproval.Service.Expense
                     _repositoryWrapper.Save();
                 }
 
-                return true;
+                
             }
             catch(Exception ex)
             {
                 Task.Run(() => _logger.Log(LogType.Error, "UpdateExpense", "", "", ex, "UpdateExpense failed"));
             }
-            return false;
+           
         }
 
         

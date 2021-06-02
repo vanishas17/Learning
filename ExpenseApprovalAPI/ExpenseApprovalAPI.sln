@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.DataAccess"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Service", "Libraries\ExpenseApproval.Service\ExpenseApproval.Service.csproj", "{FB815CF0-3E67-4206-AC48-FA766BEF706E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Utils", "Libraries\ExpenseApproval.Common\ExpenseApproval.Utils.csproj", "{1B0E6612-7004-49D7-9209-B373074E47F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseApproval.Utils", "Libraries\ExpenseApproval.Utils\ExpenseApproval.Utils.csproj", "{1B0E6612-7004-49D7-9209-B373074E47F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4F3FCA3A-CB34-4B57-8461-F56635EADE98}"
 EndProject

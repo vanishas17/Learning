@@ -53,11 +53,11 @@ namespace ExpenseApproval.Tests.MockServices
 
             };
         }
-        public bool AddExpense(UserExpense expense)
+        public void AddExpense(UserExpense expense)
         {
             expense.ExpenseID = new Guid();
             _userExpenses.ToList().Add(expense);
-            return true;
+            //return true;
         }
 
         public IEnumerable<UserExpense> GetAllExpenses()
@@ -71,12 +71,12 @@ namespace ExpenseApproval.Tests.MockServices
             return expenses.Any() ? expenses : null;
         }
 
-        public bool UpdateExpense(UserExpense expense)
+        public void UpdateExpense(UserExpense expense)
         {
             UserExpense exp = _userExpenses.Where(e => e.ExpenseID == expense.ExpenseID).FirstOrDefault();
             exp.Status = expense.Status;
 
-            return true;
+            //return true;
         }
     }
 }

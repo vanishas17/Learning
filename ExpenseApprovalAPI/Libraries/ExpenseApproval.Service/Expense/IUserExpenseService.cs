@@ -8,8 +8,8 @@ namespace ExpenseApproval.Service.Expense
     {
         IEnumerable<UserExpense> GetAllExpenses();
         IEnumerable<UserExpense> GetAllExpensesByUserId(Guid id);
-        bool AddExpense(UserExpense expense);
-        bool UpdateExpense(UserExpense expense);
+        void AddExpense(UserExpense expense);
+        void UpdateExpense(UserExpense expense);
 
 
     }

@@ -50,6 +50,8 @@ namespace ExpenseApproval.API
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddMvc(config => config.Filters.Add(typeof(CustomExceptionFilter)));
+
             // Configure Authentication
             services.AddAuthentication(auth =>
             {
@@ -97,7 +99,7 @@ namespace ExpenseApproval.API
             });
 
 
-            services.AddMvc(config => config.Filters.Add(typeof(CustomExceptionFilter)));
+           
 
         }
 

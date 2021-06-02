@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using ExpenseApproval.API.Handlers;
 using ExpenseApproval.API.Helper.Exception;
-using ExpenseApproval.Common.Dto;
 using ExpenseApproval.DataAccess.Entities;
 using ExpenseApproval.Service.Budget;
 using ExpenseApproval.Service.Expense;
+using ExpenseApproval.Utils.Dto;
+using ExpenseApproval.Utils.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -68,11 +69,9 @@ namespace ExpenseApproval.API.Controllers
         {
             var _expense = _mapper.Map<UserExpense>(expense);
 
-            var result = _userExpenseService.AddExpense(_expense);
-            if (result)
-                return Ok(new { message = "Expense Submitted Successfully" });
+            _userExpenseService.AddExpense(_expense);
 
-            throw new BaseException("Expense Submission Failed");
+            return Ok(new { message = "Expense Submitted Successfully" });
 
         }
 
@@ -84,11 +83,11 @@ namespace ExpenseApproval.API.Controllers
             var _expense = _mapper.Map<UserExpense>(expense);
 
 
-            var result = _expenseHandler.UpdateExpense(_expense);
-            if (result)
-                return Ok(new { message = "Expense Updated Successfully" });
+            _expenseHandler.UpdateExpense(_expense);
 
-            throw new BaseException("Expense Update Failed");
+            return Ok(new { message = "Expense Updated Successfully" });
+
+
 
         }
     }

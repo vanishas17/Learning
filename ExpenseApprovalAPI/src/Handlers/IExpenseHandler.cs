@@ -8,6 +8,6 @@ namespace ExpenseApproval.API.Handlers
 {
     public interface IExpenseHandler
     {
-        public bool UpdateExpense(UserExpense expense);
+        public void UpdateExpense(UserExpense expense);
     }
 }

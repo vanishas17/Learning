@@ -18,23 +18,23 @@ namespace ExpenseApproval.API.Handlers
             _userExpenseService = userExpenseService;
         }
 
-        public bool UpdateExpense(UserExpense expense)
+        public void UpdateExpense(UserExpense expense)
         {
             try
             {
                 var availableAmount = _userBudgetService.GetAvailableBudgetForUser(expense.UserID, expense.ExpenseDate.Year);
                 if(availableAmount > expense.Amount)
                 {
-                    return _userExpenseService.UpdateExpense(expense);
+                    _userExpenseService.UpdateExpense(expense);
                 } else
                 {
                     //No sufficient amount for the given year
-                    return false;
+                   // return false;
                 }
             }
             catch(Exception ex)
             {
-                return false;
+                //return false;
             }
         }
     }

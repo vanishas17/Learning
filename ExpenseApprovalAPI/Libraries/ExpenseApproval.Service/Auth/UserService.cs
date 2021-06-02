@@ -2,6 +2,7 @@
 using ExpenseApproval.DataAccess.Entities;
 using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Logging;
+using ExpenseApproval.Utils.Exceptions;
 using System;
 using System.Linq;
 using System.Security.Cryptography;
@@ -26,12 +27,15 @@ namespace ExpenseApproval.Service.UserService
             {
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
-                    return null;
+                    throw new BaseException("User or password is incorrect");
                 }
 
                 var user = _repositoryWrapper.User.GetByCondition(x => x.Email == email).FirstOrDefault();
 
-                if (user == null) return null;
+                if (user == null)
+                {
+                    throw new BaseException("User or password is incorrect");
+                }
 
                 if (!VerifyPassword(password,user.Password)) return null;
 
@@ -41,7 +45,7 @@ namespace ExpenseApproval.Service.UserService
             {
                 Task.Run(() => _logger.Log(LogType.Error, "Authenticate", "", "", ex, "Authenticate failed"));
             }
-            return null;
+            throw new BaseException("User or password is incorrect");
         }
 
         private bool VerifyPassword(string password,string hashPassword)

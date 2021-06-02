@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ExpenseApproval.API
+namespace ExpenseApproval.Utils.Exceptions
 {
     public class BaseException :Exception
     {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ExpenseApproval.Common.Dto;
+using ExpenseApproval.Utils.Dto;
 using ExpenseApproval.DataAccess.Entities;
 using System;
 using System.Collections.Generic;

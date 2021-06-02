@@ -1,9 +1,8 @@
-﻿using ExpenseApproval.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExpenseApproval.Utils.Exception
+namespace ExpenseApproval.Utils.Exceptions
 {
     public class NotFoundException : BaseException
     {

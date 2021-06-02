@@ -1,7 +1,8 @@
 ﻿using ExpenseApproval.API.Helper.Auth;
 using ExpenseApproval.API.Helper.Exception;
-using ExpenseApproval.Common.Dto;
 using ExpenseApproval.Service.UserService;
+using ExpenseApproval.Utils.Dto;
+using ExpenseApproval.Utils.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -33,9 +34,7 @@ namespace ExpenseApproval.API.Controllers
                 return BadRequest();
 
             var user = _userService.Authenticate(request.Username, request.Password);
-            if (user == null)
-                throw new BaseException("Username or password is incorrect");
-
+           
             var claims = new List<Claim>();
             claims.Add(new Claim("username", request.Username));
 

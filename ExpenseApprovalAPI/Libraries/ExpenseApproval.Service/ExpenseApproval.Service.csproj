@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExpenseApproval.Common\ExpenseApproval.Utils.csproj" />
     <ProjectReference Include="..\ExpenseApproval.DataAccess\ExpenseApproval.DataAccess.csproj" />
+    <ProjectReference Include="..\ExpenseApproval.Utils\ExpenseApproval.Utils.csproj" />
   </ItemGroup>
 
 </Project>
