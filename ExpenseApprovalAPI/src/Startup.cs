@@ -1,4 +1,5 @@
 using ExpenseApproval.API.Handlers;
+using ExpenseApproval.API.Helper.Exception;
 using ExpenseApproval.DataAccess.DbContexts;
 using ExpenseApproval.DataAccess.Repository;
 using ExpenseApproval.Service.Budget;
@@ -96,7 +97,7 @@ namespace ExpenseApproval.API
             });
 
 
-
+            services.AddMvc(config => config.Filters.Add(typeof(CustomExceptionFilter)));
 
         }
 

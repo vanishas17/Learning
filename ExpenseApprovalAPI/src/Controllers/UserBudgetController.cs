@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExpenseApproval.API.Helper.Exception;
 using ExpenseApproval.Service.Budget;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,7 @@ namespace ExpenseApproval.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(CustomExceptionFilter))]
     public class UserBudgetController : ControllerBase
     {
         private readonly IUserBudgetService _userBudgetService;

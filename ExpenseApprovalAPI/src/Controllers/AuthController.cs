@@ -1,4 +1,5 @@
 ﻿using ExpenseApproval.API.Helper.Auth;
+using ExpenseApproval.API.Helper.Exception;
 using ExpenseApproval.Common.Dto;
 using ExpenseApproval.Service.UserService;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace ExpenseApproval.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(CustomExceptionFilter))]
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;

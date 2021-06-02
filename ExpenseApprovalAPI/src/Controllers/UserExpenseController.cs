@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ExpenseApproval.API.Handlers;
+using ExpenseApproval.API.Helper.Exception;
 using ExpenseApproval.Common.Dto;
 using ExpenseApproval.DataAccess.Entities;
 using ExpenseApproval.Service.Budget;
@@ -12,10 +13,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace ExpenseApproval.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(CustomExceptionFilter))]
     public class UserExpenseController : ControllerBase
     {
         private readonly IUserExpenseService _userExpenseService;
@@ -53,7 +56,7 @@ namespace ExpenseApproval.API.Controllers
         public IActionResult GetAllExpensesByUserId(Guid id)
         {
             IEnumerable<UserExpense> userExpenses = _userExpenseService.GetAllExpensesByUserId(id);
-            
+
             return Ok(userExpenses);
         }
 
@@ -64,18 +67,13 @@ namespace ExpenseApproval.API.Controllers
         public IActionResult AddExpense([FromBody] ExpenseRequest expense)
         {
             var _expense = _mapper.Map<UserExpense>(expense);
-            try
-            {
-                var result = _userExpenseService.AddExpense(_expense);
-                if (result)
-                    return Ok(new { message = "Expense Submitted Successfully" });
 
-                throw new BaseException("Expense Submission Failed");
-            }
-            catch (Exception ex)
-            {
-                throw new BaseException("Expense Submission Failed");
-            }
+            var result = _userExpenseService.AddExpense(_expense);
+            if (result)
+                return Ok(new { message = "Expense Submitted Successfully" });
+
+            throw new BaseException("Expense Submission Failed");
+
         }
 
         [HttpPost]
@@ -84,19 +82,14 @@ namespace ExpenseApproval.API.Controllers
         public IActionResult UpdateExpense([FromBody] UpdateExpenseRequest expense)
         {
             var _expense = _mapper.Map<UserExpense>(expense);
-            
-            try
-            {
-                var result = _expenseHandler.UpdateExpense(_expense);
-                if (result)
-                    return Ok(new { message = "Expense Updated Successfully" });
 
-                throw new BaseException("Expense Update Failed");
-            }
-            catch (Exception ex)
-            {
-                throw new BaseException("Expense Update Failed");
-            }
+
+            var result = _expenseHandler.UpdateExpense(_expense);
+            if (result)
+                return Ok(new { message = "Expense Updated Successfully" });
+
+            throw new BaseException("Expense Update Failed");
+
         }
     }
 }
